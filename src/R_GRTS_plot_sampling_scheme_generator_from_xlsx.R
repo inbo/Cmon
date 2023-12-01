@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+
+
 ### Standaard GRTS sample scheme 
 ### Trekking van 50 locaties per plot
 ### Subset 50 locaties voor Survey 1 + Schaduwmeetnet incl reservelocaties
