@@ -20,7 +20,7 @@ jsonlite::fromJSON(TEXINBO.json)   ### according to jasonlite package
 
 
 
-### prettify a json string, but 
+### prettify a json string or recompact 
 prettify(TEXINBO.json)
 minify(TEXINBO.json)
 
