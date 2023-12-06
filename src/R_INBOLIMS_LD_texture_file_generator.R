@@ -2,6 +2,7 @@
 ## Programmed by Pieter Verschelde 9/06/2022
 ## adapted by Bruno De Vos
 
+### IMPORTANT
 ### !!! Be sure to have VPN connection to link to LIMS system !!!
 
 
@@ -23,17 +24,23 @@ library(readxl)
 
 ###  JSON conversion function
 
-
 TEX_CSV2JSON<-function(fullfilename)   {
   # read file
   TEXTUUR.CSV<-read.csv2(fullfilename)
+  
+  # extract observation_date from filename
+  nc<-nchar(fullfilename)
+  obsdate<-substr(fullfilename,nc-13,nc-4)
   # making a list for json data export
   # names(TEXTUUR.CSV)
-  sid<-unique(TEXTUUR.CSV$FieldSampleID)
-  labsamplecode<-unique(TEXTUUR.CSV$sample)
+  SID<-unique(TEXTUUR.CSV$FieldSampleID)
+  LabSampleCode<-unique(TEXTUUR.CSV$sample)
+  ObservationDate<-obsdate
+  AnalyseVariabele<-"FRAC.0.2000µm.ld.c0"
   metingen<-TEXTUUR.CSV[,c(3:6)]
   
-  TEXTUUR.list<-list(sid=sid,labsamplecode=labsamplecode,metingen=metingen)
+  TEXTUUR.list<-list(SID=SID,LabSampleCode=LabSampleCode,ObservationDate=ObservationDate,AnalyseVariabele=AnalyseVariabele,
+                     metingen=metingen)
   
   # convert to json in compact format
   #  TEXTUUR.json.pretty<-toJSON(TEXTUUR.list, pretty=TRUE)
@@ -49,6 +56,7 @@ TEX_CSV2JSON<-function(fullfilename)   {
 }
 
 
+
 #############################
 ## CENTRAL LOOP
 
@@ -58,7 +66,7 @@ TEX_CSV2JSON<-function(fullfilename)   {
 #filename<-"C:/R/IN/LDTEX/Export_textuur_voorbeeld.txt"
 
 ## load raw filenames in folder  "C:/R/IN/LDTEX/" voor labproject V-22V057 (Cmon)
-listFN<-list.files(path="C:/R/IN/LDTEX/2022/INBO/", pattern="V-22V057", full.names = TRUE)
+listFN<-list.files(path="C:/R/IN/LDTEX/2023/ILVO/deel4", pattern="V-23V057", full.names = TRUE)
 nlistFN<-length(listFN)
 
 ## Loop to process all files serially   ####
@@ -70,7 +78,7 @@ filename<-listFN[i]
 #read.csv2(filename)
   
   #definieer de directory voor de geparste bestandjes
-target_dir <- "C:/R/OUT/LDTEX/2022/INBO/"
+target_dir <- "C:/R/OUT/LDTEX/2023/ILVO/deel4/"
 
 #parse de file naar een geldige R dataset
 textuur_parsed <- parse_texture_content(filename, delim = "\t")
@@ -96,7 +104,7 @@ write_texture_files(target_dir, textuur_linked)
 #### Process files and save to CSV and json ####
 
 
-listFNOUT<-list.files(path="C:/R/OUT/LDTEX/2022/INBO/", pattern=".csv", full.names = TRUE)
+listFNOUT<-list.files(path="C:/R/OUT/LDTEX/2023/ILVO/deel4", pattern=".csv", full.names = TRUE)
 nlist<-length(listFNOUT)
 
 
