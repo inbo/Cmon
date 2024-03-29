@@ -67,8 +67,8 @@ TEX_CSV2JSON<-function(fullfilename)   {
 
 ## load raw filenames in folder  "C:/R/IN/LDTEX/" voor labproject V-22V057 (Cmon)
 
-#listFN<-list.files(path="C:/R/IN/LDTEX/2023/ILVO/deel4", pattern="V-23V057", full.names = TRUE)
-listFN<-list.files(path="C:/R_scripts/_GIT_REPO/Cmon/in/LDTEX/2023/deel2", pattern="V-23V057", full.names = TRUE)
+#listFN<-list.files(path="C:/R_scripts/_GIT_REPO/Cmon/in/LDTEX/2024/ILVO/deel3", pattern="V-24V057", full.names = TRUE)
+listFN<-list.files(path="C:/R_scripts/_GIT_REPO/Cmon/in/LDTEX/2023/INBO/deel2", pattern="V-23V057", full.names = TRUE)
 nlistFN<-length(listFN)
 
 ## Loop to process all files serially   ####
@@ -80,7 +80,8 @@ filename<-listFN[i]
 #read.csv2(filename)
   
   #definieer de directory voor de geparste bestandjes
-target_dir <- "C:/R_scripts/_GIT_REPO/Cmon/out/LDTEX/2023/deel2/"
+target_dir <- "C:/R_scripts/_GIT_REPO/Cmon/out/LDTEX/2023/INBO/deel2/csv"
+#target_dir <- "C:/R_scripts/_GIT_REPO/Cmon/out/LDTEX/2024/ILVO/deel3/csv"
 
 #parse de file naar een geldige R dataset
 textuur_parsed <- parse_texture_content(filename, delim = "\t")
@@ -106,7 +107,8 @@ write_texture_files(target_dir, textuur_linked)
 #### Process files and save to CSV and json ####
 
 
-listFNOUT<-list.files(path="C:/R_scripts/_GIT_REPO/Cmon/out/LDTEX/2023/deel2", pattern=".csv", full.names = TRUE)
+listFNOUT<-list.files(path="C:/R_scripts/_GIT_REPO/Cmon/out/LDTEX/2023/INBO/deel2/csv", pattern=".csv", full.names = TRUE)
+#listFNOUT<-list.files(path="C:/R_scripts/_GIT_REPO/Cmon/out/LDTEX/2024/ILVO/deel3/csv", pattern=".csv", full.names = TRUE)
 nlist<-length(listFNOUT)
 
 
