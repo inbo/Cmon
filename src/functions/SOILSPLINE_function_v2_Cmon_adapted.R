@@ -91,7 +91,7 @@ return(splinx)
  
 
  
-#### Run function
+#### Run function Example
 dev.off()
 
 naam = c("Cd4")
@@ -107,3 +107,4 @@ out
 
 #out<-SOILSPLINE(id=PLOTNAME, LTOP,LBOT,LCd,msd=SOILDEPTH,graph=TRUE)
   
+
